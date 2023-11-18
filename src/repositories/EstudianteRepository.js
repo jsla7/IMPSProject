@@ -27,7 +27,7 @@ agregarEstudiante: async(nombre,apellido,email,usuario) =>
     try
     {
         const result = await pool.query('insert into estudiantes (nombre,apellido,email,usuario) '
-                                        +'values(?,?,?,?)',[nombre],[apellido],[email],[usuario]);
+                                        +'values(?,?,?,?)',[nombre,apellido,email,usuario]);
         if(result.affectedRows > 0)
         {
             res = 1;
@@ -45,13 +45,13 @@ agregarEstudiante: async(nombre,apellido,email,usuario) =>
     return res;
 },
 
-actEstudiante: async(nombre,apellido,email,usuario) => 
+actEstudiante: async(nombre,apellido,email,usuario,idestudiante) => 
 {
     var res = -1;
     try
     {
-        const result = await pool.query('update estudiantes set nombre = ?,apellido = ?,email = ?,usuario = ?',
-                                        [nombre,apellido,email,usuario]);
+        const result = await pool.query('update estudiantes set nombre = ?,apellido = ?,email = ?,usuario = ? where idestudiante = ?',
+                                        [nombre,apellido,email,usuario,idestudiante]);
         if(result.affectedRows > 0)
         {
             res = 1;
