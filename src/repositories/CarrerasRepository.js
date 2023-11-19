@@ -21,13 +21,13 @@ eliminarCarrera: async(idcarrera) => {
     }
 },
 
-agregarCarrera: async(nombre,apellido,email,usuario) =>
+agregarCarrera: async(carrera) =>
 {
     var res = -1;
     try
     {
-        const result = await pool.query('insert into carreras (idcarrera,carrera) '
-                                        +'values(?,?)',[nombre,apellido,email,usuario]);
+        const result = await pool.query('insert into carreras (carrera) '
+                                        +'values(?,?)',[carrera]);
         if(result.affectedRows > 0)
         {
             res = 1;
